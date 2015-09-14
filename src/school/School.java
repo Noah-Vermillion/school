@@ -16,10 +16,14 @@ public class School {
          Person luke = Person.addPerson("Luke", Person.Gender.Male, 148);
          Person johnny = Person.addPerson("Johnny", Person.Gender.Male, 158);
          Person karen = Person.addPerson("Karen", Person.Gender.Female, 113);
+         Course geom = Course.addCourse("Geometry", Course.Type.Math, 2);
+         Course music = Course.addCourse("Music", Course.Type.Elective, 1);
          Person.printNames();
          Person.printWeight();
          Person.printNames(Person.Gender.Male);
          Person.printNames(Person.Gender.Female);
+         Course.printCourses();
+         Course.printPeriod();         
 //         System.out.println(joe);
     }
 }
