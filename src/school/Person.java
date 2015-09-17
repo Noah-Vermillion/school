@@ -1,7 +1,7 @@
 
 package school;
 import java.util.ArrayList;
-
+import java.util.Calendar;
 public class Person 
 {
     
@@ -17,8 +17,15 @@ public class Person
     private static ArrayList<Person> people = new ArrayList<Person>();
     private String name;
     private Gender gender;
+     private int weight; 
+    
     private int age;
-    private int weight; 
+    private int birthDay;
+    private int birthMonth;
+    private int birthYear;
+            
+    
+    private Course theCourse;
     
     
     
@@ -41,6 +48,30 @@ public class Person
         name = _name;
         gender = _gender;
         weight = _weight;
+    }
+    public void setBirthDate(int _day, int _month, int _year)
+    {
+        birthDay = _day;
+        birthMonth = _month;
+        birthYear = _year;
+    }
+    public int getAge()
+    {
+        Calendar now = Calendar.getInstance();
+        int day = now.get(Calendar.DAY_OF_MONTH);
+        int month = now.get(Calendar.MONTH) + 1;
+        int year = now.get(Calendar.YEAR);
+        age = year - birthYear;
+        return(age);
+    }
+    
+    public void addCourse(Course _course)
+    {
+        if(theCourse == null)
+        {
+            theCourse = _course;
+            theCourse.addPerson(this);
+        }    
     }
     public void setName(String _name)
     {
@@ -99,10 +130,18 @@ public class Person
             }
         }
     }
-    public String toString()
+    public static void printAge()
     {
-        return("Hi my name is " + name);
+        System.out.println("===PrintAge=== ");
+        for (Person temp : people)
+        {
+            System.out.println(temp.name + " = " + temp.age);
+        }
     }
+//    public String toString()
+//    {
+//        return(name + " " + weight + " " + gender + " " + theCourse);
+//    }
     
     
 }
