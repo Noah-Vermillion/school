@@ -17,9 +17,11 @@ public class Person
     private static ArrayList<Person> people = new ArrayList<Person>();
     private String name;
     private Gender gender;
-     private int weight; 
+    private int weight; 
     
-    private int age;
+    private int ageDay;
+    private int ageMonth;
+    private int ageYear;
     private int birthDay;
     private int birthMonth;
     private int birthYear;
@@ -32,11 +34,14 @@ public class Person
     public static Person addPerson(String _name, Gender _gender, int _weight)
     {
         Person temp = new Person(_name, _gender, _weight);
-//        people[currentPeopleIndex++] = temp;
         people.add(temp);
         return(temp);
     }
-    
+    public static void addPerson(Person _person)
+    {
+        people.add(_person);
+        
+    }
     Person()
     {
         name = "None";
@@ -61,8 +66,14 @@ public class Person
         int day = now.get(Calendar.DAY_OF_MONTH);
         int month = now.get(Calendar.MONTH) + 1;
         int year = now.get(Calendar.YEAR);
-        age = year - birthYear;
-        return(age);
+        ageDay = day - birthDay;
+        ageMonth = month - birthMonth;
+        ageYear = year - birthYear;
+        if (birthMonth < month && birthDay < day || birthMonth < month && birthDay > day || birthMonth == month && birthDay < day)
+            ageYear = ageYear;
+        else if (birthMonth > month && birthDay > day || birthMonth > month && birthDay < day || birthMonth == month && birthDay > day)
+            ageYear -= 1;
+        return(ageYear);
     }
     
     public void addCourse(Course _course)
@@ -135,13 +146,13 @@ public class Person
         System.out.println("===PrintAge=== ");
         for (Person temp : people)
         {
-            System.out.println(temp.name + " = " + temp.age);
+            System.out.println(temp.name + " = " + temp.ageYear + " years old");
         }
     }
-//    public String toString()
-//    {
-//        return(name + " " + weight + " " + gender + " " + theCourse);
-//    }
+    public String toString()
+    {
+        return(name + " " + weight + " " + gender + " " + theCourse);
+    }
     
     
 }
