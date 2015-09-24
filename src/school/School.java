@@ -7,15 +7,19 @@ public class School {
     public static void main(String[] args) 
     {
          Person joe = Person.addPerson("Joe", Person.Gender.Male, 146);
-         Person may = Person.addPerson("May", Person.Gender.Female, 112);
-         Person max = Person.addPerson("Max", Person.Gender.Male, 123);
-         Person joey = Person.addPerson("Joey", Person.Gender.Male, 176);
-         Person jessie = Person.addPerson("Jessie", Person.Gender.Female, 105);
-         Person lynda = Person.addPerson("Lynda", Person.Gender.Female, 140);
-         Person marry = Person.addPerson("Marry", Person.Gender.Female, 135);
-         Person luke = Person.addPerson("Luke", Person.Gender.Male, 148);
-         Person johnny = Person.addPerson("Johnny", Person.Gender.Male, 158);
-         Person karen = Person.addPerson("Karen", Person.Gender.Female, 113);
+         Student may = Student.addStudent("May", Person.Gender.Female, 112,10);
+         Student max = Student.addStudent("Max", Person.Gender.Male, 123,10);
+         Student joey = Student.addStudent("Joey", Person.Gender.Male, 176,10);
+         Student jessie = Student.addStudent("Jessie", Person.Gender.Female, 105,10);
+         Student lynda = Student.addStudent("Lynda", Person.Gender.Female, 140,10);
+         Student marry = Student.addStudent("Marry", Person.Gender.Female, 135,10);
+         Student luke = Student.addStudent("Luke", Person.Gender.Male, 148,10);
+         Student johnny = Student.addStudent("Johnny", Person.Gender.Male, 158,10);
+         Student karen = Student.addStudent("Karen", Person.Gender.Female, 113,10);
+         
+         Student bobby = Student.addStudent("Bobby", Person.Gender.Female, 158, 10);
+         Student noah = Student.addStudent("Noah", Person.Gender.Male, 206, 10);
+       //  Student bobby = new Student("Bobby",Person.Gender.Female,136,12);
          
          joe.setBirthDate(14, 9, 1999);
          joe.getAge();
@@ -37,6 +41,10 @@ public class School {
          johnny.getAge();
          karen.setBirthDate(31, 7, 2000);
          karen.getAge();
+         bobby.setBirthDate(16, 8, 1998);
+         bobby.getAge();
+         noah.setBirthDate(25, 5, 2000);
+         noah.getAge();
          
          ///////////////////////////////////////////////////////////////////////
          
@@ -45,26 +53,22 @@ public class School {
          
          ///////////////////////////////////////////////////////////////////////
          
+         geom.addStudent(noah);
+         
+         ///////////////////////////////////////////////////////////////////////
          Person.printNames();
+         Student.printName();
          Person.printWeight();
          Person.printNames(Person.Gender.Male);
          Person.printNames(Person.Gender.Female);
          Person.printAge();
-
-         ///////////////////////////////////////////////////////////////////////
-//       
-         geom.addPerson(joe);
+         System.out.println(noah.getName() + " - " + noah.getCourseName());
+//         noah.printCourse();
          
          ///////////////////////////////////////////////////////////////////////
          
          Course.printCourses();
          Course.printPeriod();         
-         
-         ///////////////////////////////////////////////////////////////////////
-         
-         Student bobby = Student.addStudent("Bobby", Person.Gender.Male, 158, 10);
-       //  Student bobby = new Student("Bobby",Person.Gender.Female,136,12);
-         System.out.println(bobby.getName());
          
          ///////////////////////////////////////////////////////////////////////
          

@@ -14,7 +14,7 @@ public class Course {
     private int period;
     private Type type;
     
-    private Person thePerson;
+    private Student theStudent;
     
     public static Course addCourse(String _name, Type _type, int _period)
     {
@@ -35,12 +35,12 @@ public class Course {
         type = _type;
         period = _period;
     }
-    public void addPerson(Person _person)
+    public void addStudent(Student _person)
     {
-        if(thePerson == null)
+        if(theStudent == null)
         {
-            thePerson = _person;
-            thePerson.addCourse(this);
+            theStudent = _person;
+            theStudent.addCourse(this);
         }    
     }
     public void setName(String _name)

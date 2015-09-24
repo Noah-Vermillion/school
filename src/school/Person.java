@@ -14,7 +14,7 @@ public class Person
 //    public static int numPeople = 10;
 //    private static int currentPeopleIndex = 0;
 //    private static Person people[] = new Person[numPeople];
-    private static ArrayList<Person> people = new ArrayList<Person>();
+    protected static ArrayList<Person> people = new ArrayList<Person>();
     private String name;
     private Gender gender;
     private int weight; 
@@ -27,7 +27,6 @@ public class Person
     private int birthYear;
             
     
-    private Course theCourse;
     
     
     
@@ -76,14 +75,7 @@ public class Person
         return(ageYear);
     }
     
-    public void addCourse(Course _course)
-    {
-        if(theCourse == null)
-        {
-            theCourse = _course;
-            theCourse.addPerson(this);
-        }    
-    }
+    
     public void setName(String _name)
     {
         name = _name;
@@ -151,7 +143,7 @@ public class Person
     }
     public String toString()
     {
-        return(name + " " + weight + " " + gender + " " + theCourse);
+        return(name + " " + weight + " " + gender);
     }
     
     
