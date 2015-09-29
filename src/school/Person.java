@@ -1,63 +1,51 @@
-
 package school;
 import java.util.ArrayList;
 import java.util.Calendar;
-public class Person 
-{
-    
-    enum Gender
-    {
+public class Person {
+    enum Gender {
         Male,Female
     }
-    
-    
-//    public static int numPeople = 10;
-//    private static int currentPeopleIndex = 0;
-//    private static Person people[] = new Person[numPeople];
     protected static ArrayList<Person> people = new ArrayList<Person>();
     private String name;
     private Gender gender;
-    private int weight; 
+    private int weight;
     
-    private int ageDay;
-    private int ageMonth;
-    private int ageYear;
     private int birthDay;
     private int birthMonth;
     private int birthYear;
-            
     
-    
-    
-    
-    public static Person addPerson(String _name, Gender _gender, int _weight)
+
+    public static Person addPerson(String _name,
+    Gender _gender, int _weight)
     {
-        Person temp = new Person(_name, _gender, _weight);
+        Person temp = new Person(_name,_gender,_weight);
         people.add(temp);
         return(temp);
     }
     public static void addPerson(Person _person)
     {
         people.add(_person);
-        
     }
     Person()
     {
-        name = "None";
+        name = "NoneForSure";
         gender = Gender.Female;
-        weight = 0;
+        weight = 100;
     }
-    Person(String _name, Gender _gender, int _weight)
+    Person(String _name,Gender _gender,int _weight)
     {
         name = _name;
         gender = _gender;
         weight = _weight;
-    }
-    public void setBirthDate(int _day, int _month, int _year)
+    }   
+    
+    public void setBirthdate
+    (int _day,int _month,int _year)
     {
         birthDay = _day;
         birthMonth = _month;
         birthYear = _year;
+          
     }
     public int getAge()
     {
@@ -65,86 +53,55 @@ public class Person
         int day = now.get(Calendar.DAY_OF_MONTH);
         int month = now.get(Calendar.MONTH) + 1;
         int year = now.get(Calendar.YEAR);
-        ageDay = day - birthDay;
-        ageMonth = month - birthMonth;
-        ageYear = year - birthYear;
-        if (birthMonth < month && birthDay < day || birthMonth < month && birthDay > day || birthMonth == month && birthDay < day)
-            ageYear = ageYear;
-        else if (birthMonth > month && birthDay > day || birthMonth > month && birthDay < day || birthMonth == month && birthDay > day)
-            ageYear -= 1;
-        return(ageYear);
+        return(0);
     }
+ 
     
-    
+    public void setWeight(int _weight)
+    {
+        weight = _weight;
+    }
+    public int getWeight()
+    {
+        return(weight);
+    }       
     public void setName(String _name)
     {
         name = _name;
     }
     public String getName()
     {
-        return (name);
-    }
-    public void setWeight(int _weight)
-    {
-        weight = _weight;
-    }
-    public double getWeight()
-    {
-        return (weight);
-    }
+        return(name);
+    }    
     public void setGender(Gender _gender)
     {
         gender = _gender;
     }
     public Gender getGender()
     {
-        return (gender);
-    }
+        return(gender);
+    }  
     public static void printNames()
     {
-        System.out.println("====PrintNames=====");
-        for (Person temp : people)
+        System.out.println("===printNames===");
+        for (int index=0;index<people.size();index++)
         {
-            if(temp!= null)
-            {
-                     System.out.println(temp.getName());
-            }
-        }
-    }
-    public static void printWeight()
-    {
-        System.out.println("====PrintWeight=====");
-        for (Person temp : people)
-        {
-            if(temp!= null)
-            {
-                     System.out.println(temp.getName() + " = " + temp.getWeight());
-            }
-        }
+                System.out.println(people.get(index).getName());
+        }        
     }
     public static void printNames(Gender _gender)
     {
-        System.out.println("===PrintNames=== " + _gender);
+        System.out.println(
+        "===printNamesOfGender=== " + _gender);
         for (Person temp : people)
         {
-            if(temp.gender == _gender)
-            {
-                     System.out.println(temp.getName());
-            }
+            if (temp.gender == _gender)
+                System.out.println(temp.getName());
         }
-    }
-    public static void printAge()
-    {
-        System.out.println("===PrintAge=== ");
-        for (Person temp : people)
-        {
-            System.out.println(temp.name + " = " + temp.ageYear + " years old");
-        }
-    }
+             
+    }    
     public String toString()
     {
-        return(name + " " + weight + " " + gender);
+        return(name + " " + gender + " " + weight);
     }
-    
-    
 }

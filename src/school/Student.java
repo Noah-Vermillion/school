@@ -1,60 +1,65 @@
 package school;
-
-
 public class Student extends Person{
+    private int gradeLevel;
+//    private Course theCourse;
+    private Course courses[] = new Course[4];
     
-    private int gradeLvl;
-    private Course theCourse;
-
     
-     public static Student addStudent(String _name,Gender _gender,int _weight,int _gradelvl)
+    public static Student addStudent(String _name,
+    Gender _gender, int _weight,int _gradeLevel)
     {
-        Student temp = new Student(_name, _gender, _weight,_gradelvl);
+        Student temp = new Student(_name,_gender,_weight,
+        _gradeLevel);
         addPerson(temp);
         return(temp);
-    }
-    
-    Student(String _name, Gender _gender, int _weight, int _gradelvl)
+    }    
+    Student (String _name,Gender _gender,int _weight,
+    int _gradeLevel)
     {
         super(_name,_gender,_weight);
-        gradeLvl = _gradelvl;
+        gradeLevel = _gradeLevel;
     }
-    public void setGradeLvl(int _gradeLvl)
+    
+    public boolean addCourse(Course _course)
     {
-        gradeLvl = _gradeLvl;
+        if (!setCourseOK(_course))
+            return(false);
+        if (!_course.setStudentOK(this))
+            return(false);
+        _course.setStudentDoIt(this);
+        setCourseDoIt(_course);
+        return(true);
+    }  
+    public boolean setCourseOK(Course _course)
+    {
+        if (_course == null)
+            return(false);
+        if (courses[_course.getPeriod()-1] != null)
+            return(false);
+        return(true);
     }
-    public int _gradeLvl()
+    public void setCourseDoIt(Course _course)
     {
-        return (gradeLvl);
+        courses[_course.getPeriod()-1]=_course;
     }
-    public void addCourse(Course _course)
+    
+    public void setGradeLevel(int _gradeLevel)
     {
-        if(theCourse == null)
-        {
-            theCourse = _course;
-            theCourse.addStudent(this);
-        }    
+        gradeLevel = _gradeLevel;
     }
-    public String getCourseName()
+    public int getGradeLevel()
     {
-         return(theCourse.getName());
-    }
-     public static void printName()
+        return(gradeLevel);
+    }        
+    public static void printNames()
     {
-        System.out.println("===PrintNamesOfStudents===");
+        System.out.println(
+        "===printNamesOf=== ");
         for (Person temp : people)
         {
-            if(temp instanceof Student)
-            System.out.println(temp.getName());
+            if (temp instanceof Student)
+                System.out.println(temp.getName());
         }
-    }
-//    public void printCourse()
-//    {
-//        System.out.println("===PrintStudentAndTheirCourse===");
-//        for  (Person temp : people)
-//        {
-//            System.out.println(temp.getName() + " - " + theCourse.getName());
-//        }
-//    }
-    
+             
+    }       
 }

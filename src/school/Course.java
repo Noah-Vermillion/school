@@ -1,103 +1,138 @@
+
 package school;
-
 import java.util.ArrayList;
-
 public class Course {
-    
-    enum Type
-    {
-        Math,Science,English,History,Language,Elective,PE;
+    enum Type {
+        Math,Science,English,History,Language,Elective,PE
     }
-    
     private static ArrayList<Course> courses = new ArrayList<Course>();
     private String name;
-    private int period;
     private Type type;
+    private int period;
     
-    private Student theStudent;
-    
-    public static Course addCourse(String _name, Type _type, int _period)
+    private ArrayList<Student> students = 
+    new ArrayList<Student>();
+  //  private Student theStudent;
+    private Teacher theTeacher;
+
+    public static Course addCourse(String _name,
+    Type _type, int _period)
     {
-        Course temp = new Course(_name, _type, _period);
+        Course temp = new Course(_name,_type,_period);
         courses.add(temp);
         return(temp);
     }
     
+    
+    
     Course()
     {
-        name = "none";
-        period = 0;
+        name = "None";
         type = Type.Elective;
+        period = 1;
     }
-    Course(String _name, Type _type, int _period)
+    Course(String _name,Type _type, int _period)
     {
         name = _name;
         type = _type;
         period = _period;
-    }
-    public void addStudent(Student _person)
+    }   
+
+
+    public boolean addStudent(Student _student)
     {
-        if(theStudent == null)
-        {
-            theStudent = _person;
-            theStudent.addCourse(this);
-        }    
+        if (!setStudentOK(_student))
+            return(false);
+        if (!_student.setCourseOK(this))
+            return(false);
+        _student.setCourseDoIt(this);
+        setStudentDoIt(_student);
+        return(true);
+    }  
+
+    public boolean setStudentOK(Student _student)
+    {
+        if (_student == null)
+            return(false);
+        if (students.contains(_student))
+            return(false);
+        return(true);
     }
+    public void setStudentDoIt(Student _student)
+    {
+        students.add(_student);
+    }    
+    
+        /////////////////////    
+    
+    
+    public boolean addTeacher(Teacher _teacher)
+    {
+        if (!setTeacherOK(_teacher))
+            return(false);
+        if (!_teacher.setCourseOK(this))
+            return(false);
+        _teacher.setCourseDoIt(this);
+        setTeacherDoIt(_teacher);
+        return(true);
+    }  
+    public boolean setTeacherOK(Teacher _teacher)
+    {
+        if (_teacher == null)
+            return(false);
+        if (theTeacher != null)
+            return(false);
+        return(true);
+    }
+    public void setTeacherDoIt(Teacher _teacher)
+    {
+        theTeacher = _teacher;
+    }    
+    
+        
+    public void setPeriod(int _period)
+    {
+        period = _period;
+    }
+    public int getPeriod()
+    {
+        return(period);
+    }       
     public void setName(String _name)
     {
         name = _name;
     }
     public String getName()
     {
-        return (name);
-    }
-    public void setperiod(int _period)
-    {
-        period = _period;
-    }
-    public int getPeriod()
-    {
-        return (period);
-    }
+        return(name);
+    }    
     public void setType(Type _type)
     {
         type = _type;
     }
-    public Type type()
+    public Type getType()
     {
-        return (type);
+        return(type);
+    }  
+    
+    public Student getStudent(int _index)
+    {
+        return(students.get(_index));
     }
-    public static void printCourses()
+    public int getNumStudents()
     {
-        System.out.println("====PrintCourse=====");
+        return(students.size());
+    }
+    public static void printNames()
+    {
+        System.out.println("===printNames===");
         for (Course temp : courses)
         {
-            if(temp!= null)
-            {
-                     System.out.println(temp.getName());
-            }
-        }
-    }
-     public static void printPeriod()
+                System.out.println(temp.getName());
+        }        
+    }    
+    public String toString()
     {
-        System.out.println("====PrintPeriods=====");
-        for (Course temp : courses)
-        {
-            if(temp!= null)
-            {
-                     System.out.println(temp.getName() + " = " + temp.getPeriod());
-            }
-        }
-    }
-    public static void printCourse(Type _type)
-    {
-        System.out.println("===PrintCourses=== " + _type);
-        for (Course temp : courses)
-        {
-            if(temp.type == _type)
-            {
-                     System.out.println(temp.getName());
-            }
-        }
-    }
+        return(name + " " + type + " " + period + " " + theTeacher.getName());
+    }    
 }
