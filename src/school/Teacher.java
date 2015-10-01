@@ -3,11 +3,14 @@
  * and open the template in the editor.
  */
 package school;
+
+import static school.Person.people;
+
 public class Teacher extends Person{
 
     private double meanLevel;
     private Course theCourse;
-    private Course courses[] = new Course[4];
+    private Course courses[] = new Course[Course.numPeriods];
     
     public static Teacher addTeacher(String _name,
     Gender _gender, int _weight,double _meanLevel)
@@ -78,5 +81,50 @@ public class Teacher extends Person{
                 }
             }
         }
+    }
+    public void printStudentsNamesOfGrade(int _gradeLvl)
+    {
+        System.out.println(getName() + " teaches ");
+        for (Course temp : courses)
+        {
+            if (temp != null)
+            {
+                for (int index = 0;index < temp.getNumStudents();index++)
+                {
+                    if(temp.getStudent(index).getGradeLevel() == _gradeLvl)
+                    {
+                        System.out.println(temp.getStudent(index).getName());
+                    }
+                }
+            }
+        }
+    }
+    public static Teacher mostElectiveCoursees()
+    {
+       
+        int curMEC = 0;
+        
+        Teacher curMostEC = null;
+        for (Person temp : people)
+        {
+             if (temp instanceof Teacher)
+             {
+                 int counter = 0;
+                 Teacher teacher = (Teacher)temp;
+                 for(int x = 0;x<Course.numPeriods;x++)
+                 {
+                          if(teacher.courses[x] != null && teacher.courses[x].getType() == Course.Type.Elective )
+                          {
+                              counter ++;
+                          }
+                 }
+                 if(counter > curMEC)
+                     {
+                     curMEC = counter;
+                     curMostEC = teacher;
+                     }
+             }
+        }
+        return(curMostEC);
     }
 }

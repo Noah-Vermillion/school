@@ -55,7 +55,7 @@ public class Person {
         int year = now.get(Calendar.YEAR);
         return(0);
     }
- 
+    
     
     public void setWeight(int _weight)
     {

@@ -5,7 +5,7 @@ public class School {
         Student jill =  Student.addStudent("Jill",Person.Gender.Female,105,9);
         Student billyJoe =  Student.addStudent("BillyJoe",Person.Gender.Male,210,12);
         Student bobby =  Student.addStudent("Bobby",Person.Gender.Male,168,11);        
-        Student ann =  Student.addStudent("Annie",Person.Gender.Female,98,9);        
+        Student ann =  Student.addStudent("Annie",Person.Gender.Female,98,11);        
         Student sean =  Student.addStudent("Sean",Person.Gender.Male,138,11);        
                 
         Teacher price = Teacher.addTeacher("Price", Person.Gender.Male, 206,4.7);
@@ -15,26 +15,63 @@ public class School {
         Teacher jones = Teacher.addTeacher("Jones", Person.Gender.Female, 102,1.2);
         
         Course geom =  Course.addCourse("Geometry", Course.Type.Math, 1);
+        Course algebra1 =  Course.addCourse("Algebra1", Course.Type.Math, 2);
+        Course algebra2 =  Course.addCourse("Algebra2", Course.Type.Math, 3);
+        Course trigonometry =  Course.addCourse("Trigonometry", Course.Type.Math, 4);
+        
         Course photo =  Course.addCourse("Photography", Course.Type.Elective, 3);       
-        Course biology =  Course.addCourse("Biology", Course.Type.Science, 2);       
-        Course worldHistory =  Course.addCourse("WorldHistory", Course.Type.History, 2);       
+        Course compsci2 =  Course.addCourse("Compsci2", Course.Type.Elective, 2);  
+        Course compsci1 =  Course.addCourse("Compsci1", Course.Type.Elective, 1);  
+        Course webDesign =  Course.addCourse("WebDesign", Course.Type.Elective, 4);  
+        
+        Course biology =  Course.addCourse("Biology", Course.Type.Science, 2);  
+        Course chemistry =  Course.addCourse("Chemistry", Course.Type.Science, 1);  
+        Course earthsciences =  Course.addCourse("Earthsciences", Course.Type.Science, 3);  
+        Course anatomy =  Course.addCourse("Anatomy", Course.Type.Science, 4);  
+        
+        Course worldHistory1 =  Course.addCourse("WorldHistory", Course.Type.History, 1);       
+        Course apeuro =  Course.addCourse("Ap euro", Course.Type.History, 3);       
+        Course apush =  Course.addCourse("Apush", Course.Type.History, 2);       
+        Course worldHistory2 =  Course.addCourse("WorldHistory2", Course.Type.History, 4);       
 
-        geom.addStudent(bobby);
-        photo.addStudent(jill);
-        biology.addStudent(ann);
-        worldHistory.addStudent(sean);
+        geom.addStudent(bobby,4.0);
+         webDesign.addStudent(bobby,3.9);
+          biology.addStudent(bobby,3.1);
+           apeuro.addStudent(bobby,3.5);
+          
+         photo.addStudent(jill,4.0);
+          algebra1.addStudent(jill,2.9 );
+           worldHistory1.addStudent(jill,2.9);
+            chemistry.addStudent(jill,3.3);
+        
+        biology.addStudent(ann,4.0);
+         geom.addStudent(ann,3.6);
+          photo.addStudent(ann,3.2);
+           worldHistory1.addStudent(ann,3.6);
+         
+        
+        apush.addStudent(sean,3.0);
+         compsci1.addStudent(sean,2.9);
+          geom.addStudent(sean,3.2);
+           biology.addStudent(sean,3.7);
+          
          
         geom.addTeacher(price);
         photo.addTeacher(anderson);
         biology.addTeacher(smith);
-        worldHistory.addTeacher(hudson);
+        worldHistory1.addTeacher(hudson);
         
-        
-        Course.printNames();
-        Person.printNames();
-        Student.printNames();
-        Teacher.printNames();
-        
-        hudson.printStudentsNames();
+//        System.out.println(bobby.getGpa());
+//        Course.printNames();
+//        Person.printNames();
+//        Student.printNames();
+//        Teacher.printNames();
+//        Student.printNamesGPAGreaterThan(3.5);
+//        Student HighestGPA = Student.getHighestGPA();
+//        System.out.println(HighestGPA.getName());
+        Teacher mostEC = Teacher.mostElectiveCoursees();
+        System.out.println(mostEC.getName());
+        price.printStudentsNamesOfGrade(11);
+      //  hudson.printStudentsNames();
     }
 }

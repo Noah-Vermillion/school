@@ -9,11 +9,12 @@ public class Course {
     private String name;
     private Type type;
     private int period;
+    public final static int numPeriods = 4;
     
-    private ArrayList<Student> students = 
-    new ArrayList<Student>();
+    private ArrayList<Student> students = new ArrayList<Student>();
   //  private Student theStudent;
     private Teacher theTeacher;
+   // public double grade;
 
     public static Course addCourse(String _name,
     Type _type, int _period)
@@ -39,13 +40,13 @@ public class Course {
     }   
 
 
-    public boolean addStudent(Student _student)
+    public boolean addStudent(Student _student, double _grade)
     {
         if (!setStudentOK(_student))
             return(false);
         if (!_student.setCourseOK(this))
             return(false);
-        _student.setCourseDoIt(this);
+        _student.setCourseDoIt(this, _grade);
         setStudentDoIt(_student);
         return(true);
     }  
@@ -88,7 +89,10 @@ public class Course {
     {
         theTeacher = _teacher;
     }    
-    
+    public Teacher getTeacher()
+    {
+        return(theTeacher);
+    }
         
     public void setPeriod(int _period)
     {
@@ -128,9 +132,20 @@ public class Course {
         System.out.println("===printNames===");
         for (Course temp : courses)
         {
+            if(temp != null)
+            {
                 System.out.println(temp.getName());
+            }
         }        
     }    
+    public void printStudentGrades()
+    {
+        System.out.println("===printGradesOfStudents===");
+        for (Student temp : students)
+        {
+                System.out.println(temp.getName() + " has a " + temp.grade);
+        }        
+    }
     public String toString()
     {
         return(name + " " + type + " " + period + " " + theTeacher.getName());
