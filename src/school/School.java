@@ -14,25 +14,25 @@ public class School {
         Teacher smith = Teacher.addTeacher("Smith", Person.Gender.Male, 152,8.2);
         Teacher jones = Teacher.addTeacher("Jones", Person.Gender.Female, 102,1.2);
         
-        Course geom =  Course.addCourse("Geometry", Course.Type.Math, 1);
-        Course algebra1 =  Course.addCourse("Algebra1", Course.Type.Math, 2);
-        Course algebra2 =  Course.addCourse("Algebra2", Course.Type.Math, 3);
-        Course trigonometry =  Course.addCourse("Trigonometry", Course.Type.Math, 4);
+        Course geom =  Course.addCourse("Geometry", Course.Type.Math, 4, true);
+        Course algebra1 =  Course.addCourse("Algebra1", Course.Type.Math, 2, false);
+        Course algebra2 =  Course.addCourse("Algebra2", Course.Type.Math, 3, true);
+        Course trigonometry =  Course.addCourse("Trigonometry", Course.Type.Math, 4, false);
         
-        Course photo =  Course.addCourse("Photography", Course.Type.Elective, 3);       
-        Course compsci2 =  Course.addCourse("Compsci2", Course.Type.Elective, 2);  
-        Course compsci1 =  Course.addCourse("Compsci1", Course.Type.Elective, 1);  
-        Course webDesign =  Course.addCourse("WebDesign", Course.Type.Elective, 4);  
+        Course photo =  Course.addCourse("Photography", Course.Type.Elective, 3, false);       
+        Course compsci2 =  Course.addCourse("Compsci2", Course.Type.Elective, 2, false);  
+        Course compsci1 =  Course.addCourse("Compsci1", Course.Type.Elective, 1, false);  
+        Course webDesign =  Course.addCourse("WebDesign", Course.Type.Elective, 4, false);  
         
-        Course biology =  Course.addCourse("Biology", Course.Type.Science, 2);  
-        Course chemistry =  Course.addCourse("Chemistry", Course.Type.Science, 1);  
-        Course earthsciences =  Course.addCourse("Earthsciences", Course.Type.Science, 3);  
-        Course anatomy =  Course.addCourse("Anatomy", Course.Type.Science, 4);  
+        Course biology =  Course.addCourse("Biology", Course.Type.Science, 3, false);  
+        Course chemistry =  Course.addCourse("Chemistry", Course.Type.Science, 1, true);  
+        Course earthsciences =  Course.addCourse("Earthsciences", Course.Type.Science, 3, false);  
+        Course anatomy =  Course.addCourse("Anatomy", Course.Type.Science, 4, true);  
         
-        Course worldHistory1 =  Course.addCourse("WorldHistory", Course.Type.History, 1);       
-        Course apeuro =  Course.addCourse("Ap euro", Course.Type.History, 3);       
-        Course apush =  Course.addCourse("Apush", Course.Type.History, 2);       
-        Course worldHistory2 =  Course.addCourse("WorldHistory2", Course.Type.History, 4);       
+        Course worldHistory1 =  Course.addCourse("WorldHistory", Course.Type.History, 1, false);       
+        Course apeuro =  Course.addCourse("Ap euro", Course.Type.History, 3, true);       
+        Course apush =  Course.addCourse("Apush", Course.Type.History, 2, true);       
+        Course worldHistory2 =  Course.addCourse("WorldHistory2", Course.Type.History, 4, false);       
 
         geom.addStudent(bobby,4.0);
          webDesign.addStudent(bobby,3.9);
@@ -55,7 +55,8 @@ public class School {
           geom.addStudent(sean,3.2);
            biology.addStudent(sean,3.7);
           
-         
+        apush.addTeacher(anderson);
+        compsci1.addTeacher(hudson);
         geom.addTeacher(price);
         photo.addTeacher(anderson);
         biology.addTeacher(smith);
@@ -69,9 +70,12 @@ public class School {
 //        Student.printNamesGPAGreaterThan(3.5);
 //        Student HighestGPA = Student.getHighestGPA();
 //        System.out.println(HighestGPA.getName());
-        Teacher mostEC = Teacher.mostElectiveCoursees();
-        System.out.println(mostEC.getName());
-        price.printStudentsNamesOfGrade(11);
+//        Teacher mostEC = Teacher.mostElectiveCoursees();
+//        System.out.println(mostEC.getName());
+//        price.printStudentsNamesOfGrade(11);
       //  hudson.printStudentsNames();
+        Student.printKidsWhoHaveHonors();
+        System.out.println(sean.getTeacherNameWithLowestMeanLvl().getName());
+        Teacher.printTeachersWhoTeachKidsOfGrade(11);
     }
 }

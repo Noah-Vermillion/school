@@ -84,6 +84,47 @@ public class Student extends Person{
         }
              
     }
+    public static void printKidsWhoHaveHonors()
+    {
+        System.out.println("===printNamesOfKidsWhoHaveHonors=== ");
+        for (Person temp : people)
+        {
+            if (temp instanceof Student)
+            {
+                Student student =(Student)temp;
+                for(int x = 0;x<Course.numPeriods;x++)
+                {
+                    if(student.courses[x] != null && student.courses[x].getHonors() == true)
+                    {
+                        System.out.println(temp.getName() + " ");
+                        x = Course.numPeriods;
+                    }
+                }
+                
+            }
+        }
+             
+    }
+     public Teacher getTeacherNameWithLowestMeanLvl()
+    {
+        double lowestMeanLvl = 10.0;
+        Teacher lowMeanLvl = null;
+        for (int x = 0;x<Course.numPeriods;x++)
+        {
+            if (courses[x] != null)
+            {
+                if(courses[x].getTeacher() != null)
+                {
+                    if(lowMeanLvl == null || courses[x].getTeacher().getMeanLevel() < lowestMeanLvl)
+                    {
+                          lowestMeanLvl = courses[x].getTeacher().getMeanLevel();
+                          lowMeanLvl = courses[x].getTeacher();
+                    }
+                }
+            }    
+        }
+        return(lowMeanLvl); 
+    }
     public void printTeacherNames()
     {
         System.out.println(getName() + " learns from ");

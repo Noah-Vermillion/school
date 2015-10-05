@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package school;
-
+import java.util.ArrayList;
 import static school.Person.people;
 
 public class Teacher extends Person{
@@ -94,6 +94,36 @@ public class Teacher extends Person{
                     if(temp.getStudent(index).getGradeLevel() == _gradeLvl)
                     {
                         System.out.println(temp.getStudent(index).getName());
+                    }
+                }
+            }
+        }
+    }
+    public static void printTeachersWhoTeachKidsOfGrade(int _gradeLvl)
+    {
+        for (Person temp : people)
+        {
+            if (temp instanceof Teacher)
+            {
+                Teacher teacher = (Teacher)temp;
+                if (teacher != null)
+                {
+                    for(int x = 0;x < Course.numPeriods; x++)
+                    {
+                        if(teacher.courses[x] != null)
+                        {
+                            ArrayList<Student> studs = teacher.courses[x].getStudents();
+                        
+                            if(teacher.courses[x] != null)
+                            {
+                                if(teacher.courses[x].getStudent(index).getGradeLevel() == _gradeLvl)
+                                {
+                                    System.out.println(temp.getName());
+                                    x = Course.numPeriods;
+                                }
+                            }
+                        
+                        }
                     }
                 }
             }
